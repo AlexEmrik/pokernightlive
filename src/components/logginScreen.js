@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './logginScreen.css';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+
 
 function LogginScreen(){
 
@@ -26,6 +28,13 @@ function LogginScreen(){
     handleToggle();
   };
 
+  const history = useHistory();
+
+  const routeChange = () =>{ 
+    let path = `/`; 
+    history.push(path);
+  }
+
   return (
     <>
       <div className="wrapper">
@@ -35,12 +44,12 @@ function LogginScreen(){
 		<form className={isActive ? "form" : "deactive"}>
 			<input type="text" placeholder="Namn"/>
 			<input type="password" placeholder="Lösenord"/>
-			<button type="submit" id="login-button">Logga in!</button>     
-			 <p class="message">Inget konto? <a href="#" onClick={handleToggle}>Gör ett!</a></p>
+			<button type="submit" id="login-button" onClick={routeChange}>Logga in!</button>     
+			 <p className="message">Inget konto? <a href="#" onClick={handleToggle}>Gör ett!</a></p>
 		</form>
 		<div className={isActive ? "deactive" : "login-page"}>
 		<div className="form">
-    <form class="register-form">
+    <form className="register-form">
       <input type="text" placeholder="Namn"/>
       <input type="text" placeholder="Telefonnummer"/>
       <input type="password" placeholder="Lösenord"/>
